@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="-1">
+
+		<title>jQuery Chrony - A Count Down Plugin</title>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.chrony.min.js"></script>
+
+		<style type="text/css">
+			/* This CSS does not belong to the plugin. */
+			body { background: url('img/background.gif'); font: normal 11px verdana; }
+			
+			a { color: #2C8CBD; text-decoration: none; }
+			a:hover { color: #48A5D4; }
+			
+			a#coffee {
+				background: url('img/coffee.png') 6px 2px no-repeat #DC5; border: 1px solid #D9C640; color: #FFF; display: block; float: right; font-size: 10px; font-weight: bold; letter-spacing: .9px; margin-right: 9px; padding: 4px 5px 4px 26px; text-decoration: none;
+				-khtml-border-radius: 4px; -moz-border-radius: 4px; -opera-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+			}
+			a#coffee:hover { text-decoration: underline; }
+			
+			span.comment { color: #999; font: 12px monospace; letter-spacing: .1px; margin-bottom: 7px; margin-top: 5px; }
+			
+			div#content { background-color: #FFF; border: 1px solid #DEDEDE; box-shadow: 0 1px 3px rgba(100, 100, 100, 0.4); margin: 0 auto; padding: 15px; width: 1100px; min-height: 510px; }
+			
+			div.description { color: #555; letter-spacing: .1px; margin-bottom: 15px; margin-top: 10px; text-align: left; }
+			
+			div.description-code { color: #555; letter-spacing: .1px; margin-bottom: 10px; text-indent: 7px; }
+
+			div#menu-feature { color: #AAA; float: left; margin-bottom: 20px; }
+			div#menu-feature a { float: left; width: 120px }
+			div#menu-feature a.disabled { color: #999; cursor: default; }
+			div#menu-feature a.selected { color: #2C8CBD; cursor: default; font-weight: bold; }
+
+			div#footer { clear: both; height: 25px; margin-top: 5px; width: 100%; }
+			div#footer div#copy { margin: 0 auto; text-align: center; width: 1100px; }
+			
+			div#header { margin: 0 auto; padding-left: 20px; width: 1130px; }
+			
+			div#menu { color: #AB9927; font: bold 14px 'Lucida Grande', 'Helvetica', 'Times New Roman', serif; text-shadow: 1px 1px 1px #FFF; text-transform: uppercase; }
+			div#menu a { color: #EA9C00; font: bold 10px verdana; letter-spacing: .9px; text-decoration: none; }
+			div#menu a:hover { color: #DC5; font-weight: bold; letter-spacing: .9px; text-decoration: underline; }
+			
+			div.session { clear: both;  font: bold 13px verdana; border-bottom: 1px solid #EFEFEF; color: #444; letter-spacing: .7px; margin-bottom: 18px; margin-top: 24px; text-align: left; }
+			div.session-first { clear: both; font: bold 13px verdana; border-bottom: 1px solid #EFEFEF; color: #444; letter-spacing: .7px; margin-bottom: 18px; text-align: left; }
+			div.session-mini { font: bold 10px verdana; color: #444; letter-spacing: .7px; margin-top: 17px; }
+			
+			div.source { background: #F8F8FF; border: 1px solid #EFEFEF; border-left: 3px solid #CCC; clear: both; color: #444; font: 12px monospace; border-radius: 2px; letter-spacing: .1px; margin-bottom: 7px; margin-top: 15px; padding: 7px; width: 1081px; -khtml-border-radius: 2px; -moz-border-radius: 2px; -opera-border-radius: 2px; -webkit-border-radius: 2px; }
+			div.source div.comment { color: #777; font: 9px verdana; letter-spacing: 0.4px; margin-bottom: 9px; text-align: left; }
+			
+			div#title { font: bold 17px verdana; color: #269; letter-spacing: .7px; margin-bottom: 10px; text-align: left; }
+			div#title span { color: #777; font: 10px verdana; }
+			
+			span#version { color: #777; font: 10px verdana; }
+
+			/* custom */
+			#time, #blink, #callback, #text, #seconds, #minutes, #decrement, #alert, #hours { font: bold 14px arial; color: #2C8CBD; }
+		</style>
+
+		<script type="text/javascript">
+			// This code does NOT belong the plugin. See the example code at the bottom of this page.
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-194992347-11']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="header">
+			<div id="title">
+				<a href="http://wbotelhos.com/chrony">jQuery Chrony - A Count Down Plugin</a>
+				<span>(current version: 0.1.0)</span>
+			</div>
+
+			<div id="menu">
+				<a href="http://github.com/downloads/wbotelhos/chrony/jquery.chrony-0.1.0.zip" target="_blank">Download</a> |
+				<a href="http://github.com/wbotelhos/chrony" target="_blank">Github</a> |
+				<a href="http://wbotelhos.com/chrony/changelog.markdown" target="_blank">Change Log</a> |
+				<a href="http://wbotelhos.com/chrony/README.markdown" target="_blank">Readme</a> |
+				<a href="http://www.wbotelhos.com/2011/11/06/jquery-chrony-a-count-down-plugin" target="_blank">Article</a> |
+				<a href="http://wbotelhos.com/chrony/LICENSE.txt" target="_blank">License</a> |
+				<a href="http://www.wbotelhos.com/chrony/who.html" target="_blank">Who is using</a> |
+				<a href="http://www.wbotelhos.com/2011/11/06/jquery-chrony-a-count-down-plugin#comments" target="_blank" style="color: #2C8CBD;">Doubt</a> |
+				<a href="http://www.wbotelhos.com/labs" target="_blank" style="color: #000;">yLab</a>
+			</div>
+
+			<a id="coffee" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=X8HEP2878NDEG&amp;item_name=jQuery%20Chrony" target="_blank">buy me a coffee</a>
+
+			<div class="description">jQuery <strong>Chrony</strong> is a plugin that creates a chronometer.</div>
+		</div>
+
+		<div id="content">
+			<div id="default-demo" class="session-first">With default options:</div>
+
+			<div id="time"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#time').chrony({ hour: 1, minute: 2, second: 3 });<br/><br/>
+
+				&lt;div id="time"&gt;&lt;/div&gt;
+			</div>
+
+			<div id="callback-demo" class="session">With callback option:</div>
+
+			<div id="callback"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#callback').chrony({<br/>
+					&nbsp;&nbsp;second: 15,<br/>
+					&nbsp;&nbsp;finish: function() {<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;this.html('Finished!');<br/>
+					&nbsp;&nbsp;}<br/>
+				});<br/><br/>
+
+				&lt;div id="callback"&gt;&lt;/div&gt;
+			</div>
+
+			<div id="blink-demo" class="session">With blink option:</div>
+
+			<div id="blink"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#blink').chrony({ minute: 10, blink: true });<br/><br/>
+
+				&lt;div id="blink"&gt;&lt;/div&gt;
+			</div>
+
+			<div id="text-demo" class="session">With text format:</div>
+
+			<div id="text"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#text').chrony({ text: '1:20:30' });<br/><br/>
+
+				&lt;div id="text"&gt;&lt;/div&gt;
+			</div>
+
+			<div id="alert-demo" class="session">With custom alert:</div>
+
+			<div id="alert"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#alert').chrony({ seconds: 3670, alert: { color: '#DDD', hour: 1, minute: 1, second: 1 } });<br/><br/>
+
+				&lt;div id="alert"&gt;&lt;/div&gt;
+			</div>
+
+			<span class="comment" style="float: left; margin-bottom: 10px;">
+				- When you not especify the attribute hour, minute or second the default value is zero (0) for each one;<br/> 
+				- When you not especify the attribute color, the default value is red '#F00'.<br/>
+			</span>
+
+			<div id="seconds-demo" class="session">With auto adjusted seconds:</div>
+
+			<div id="seconds"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#seconds').chrony({ seconds: 70 });<br/><br/>
+
+				&lt;div id="seconds"&gt;&lt;/div&gt;
+			</div>
+
+			<div id="minutes-demo" class="session">With auto adjusted minutes:</div>
+
+			<div id="minutes"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#minutes').chrony({ minutes: 70 });<br/><br/>
+
+				&lt;div id="minutes"&gt;&lt;/div&gt;
+			</div>
+
+			<div id="hours-demo" class="session">With auto adjusted hours:</div>
+
+			<div id="hours"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#hours').chrony({ hours: 70 });<br/><br/>
+
+				&lt;div id="hours"&gt;&lt;/div&gt;
+			</div>
+
+			<span class="comment" style="float: left; margin-bottom: 10px;">
+				- The max time will be setted to 23:59:59.<br/>
+			</span>
+
+			<div id="decrement-demo" class="session">With custom decrement:</div>
+
+			<div id="decrement"></div>
+
+			<div class="source" style="float: left; margin-bottom: 15px;">
+				$('#decrement').chrony({ decrement: 2 });<br/><br/>
+
+				&lt;div id="decrement"&gt;&lt;/div&gt;
+			</div>
+
+			<div class="session">Default options:</div>
+
+			<div class="source">
+				blink:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false
+				<div class="comment">Enables the colon blink.</div>
+				alert:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ second: 10 }
+				<div class="comment">Attributes color, hour, minute and second to configure the alert.</div>
+				blinkTime:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;130
+				<div class="comment">Time spent to blink the colon.</div>
+				finish:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				<div class="comment">Callback function to be executed when the time ends.</div>
+				decrement:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+				<div class="comment">Number of seconds used to decrement the time.</div>
+				hour:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+				<div class="comment">Number of hours initial.</div>
+				hours:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				<div class="comment">Number of hours initial auto adjusted to max if needed.</div>
+				minute:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+				<div class="comment">Number of minutes initial.</div>
+				minutes:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				<div class="comment">Number of minutes initial auto adjusted to hour if needed.</div>
+				second:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+				<div class="comment">Number of seconds initial.</div>
+				seconds:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				<div class="comment">Number of seconds initial auto adjusted to minute if needed.</div>
+				text:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undefined
+				<div class="comment">Time written out in full using the following mask: HH:mm:ss.</div>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div id="copy">&copy; 2011 <a href="http://www.wbotelhos.com/" target="_blank">wbotelhos.com</a></div>
+		</div>
+
+		<script type="text/javascript">
+			$(function() {
+
+				$('#time').chrony({ hour: 1, minute: 2, second: 3 });
+
+				$('#callback').chrony({
+					second: 15,
+					finish: function() {
+						this.html('Finished!');
+					}
+				});
+
+				$('#blink').chrony({ minute: 10, blink: true });
+
+				$('#alert').chrony({ seconds: 3670, alert: { color: '#DDD', hour: 1, minute: 1, second: 1 } });
+
+				$('#seconds').chrony({ seconds: 70 });
+
+				$('#text').chrony({ text: '1:20:30' });
+
+				$('#minutes').chrony({ minutes: 70 });
+
+				$('#hours').chrony({ hours: 70 });
+
+				$('#decrement').chrony({ minutes: 42, decrement: 2 });
+
+			});
+		</script>
+	</body>
+</html>
