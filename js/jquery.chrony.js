@@ -1,6 +1,6 @@
 /*!
  * jQuery Chrony - A Count Down Plugin - http://wbotelhos.com/chrony
- * ---------------------------------------------------------------------------------
+ * ------------------------------------------------------------------
  *
  * jQuery Chrony is a plugin that creates a chronometer.
  *
@@ -11,11 +11,9 @@
  * @author         Washington Botelho
  * @documentation  wbotelhos.com/chrony
  * @twitter        twitter.com/wbotelhos
- * @license        opensource.org/licenses/mit-license.php
- * @package        jQuery Plugins
  *
  * Usage with default values:
- * ---------------------------------------------------------------------------------
+ * ------------------------------------------------------------------
  * $('#time').chrony({ hour: 1, minute: 2, second: 3 });
  *
  * <div id="time"></div>

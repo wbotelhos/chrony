@@ -8,12 +8,15 @@ The jQuery Chrony is licensed under [The MIT License](http://www.opensource.org/
 
 ## Version
 
-	@version         0.1.0
-	@since           2011.10.23
-	@author          Washington Botelho dos Santos
-	@documentation   wbotelhos.com/chrony
-	@twitter         twitter.com/wbotelhos
-	@package         jQuery Plugins
+	@version        0.1.0
+	@since          2011.10.23
+	@author         Washington Botelho dos Santos
+	@documentation  wbotelhos.com/chrony
+	@twitter        twitter.com/wbotelhos
+
+## Required Files
+
++ jquery.chrony.min.js
 
 ## Default values
 
