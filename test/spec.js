@@ -10,7 +10,7 @@ describe('Chrony', function() {
 
 	describe('checking initialization', function() {
 
-		it('should mount the right clock', function() {
+		it ('should mount the right clock', function() {
 			// given
 			var $time = $('#time');
 
@@ -28,7 +28,7 @@ describe('Chrony', function() {
 		    expect($secondColon).toExist();
 		});
 
-		it('should initialize correctly with zeros', function() {
+		it ('should initialize correctly with zeros', function() {
 			// given
 			var $time = $('#time');
 
@@ -49,7 +49,7 @@ describe('Chrony', function() {
 		    expect($second).toHaveText('03');
 		});
 
-		it('should initialize correctly without zeros', function() {
+		it ('should initialize correctly without zeros', function() {
 			// given
 			var $time = $('#time');
 
@@ -74,7 +74,7 @@ describe('Chrony', function() {
 
 	describe('auto adjusting the time', function() {
 
-		it('should adjust the seconds with hour minute and second', function() {
+		it ('should adjust the seconds with hour minute and second', function() {
 			// given
 			var $time = $('#time');
 
@@ -91,7 +91,7 @@ describe('Chrony', function() {
 		    expect($second).toHaveText('03');
 		});
 
-		it('should adjust the minutes with hour and minute', function() {
+		it ('should adjust the minutes with hour and minute', function() {
 			// given
 			var $time = $('#time');
 
@@ -108,7 +108,7 @@ describe('Chrony', function() {
 		    expect($second).toHaveText('00');
 		});
 
-		it('should adjust the hours with hour', function() {
+		it ('should adjust the hours with hour', function() {
 			// given
 			var $time = $('#time');
 
@@ -125,7 +125,7 @@ describe('Chrony', function() {
 		    expect($second).toHaveText('00');
 		});
 
-		it('should adjust the hours with max time', function() {
+		it ('should adjust the hours with max time', function() {
 			// given
 			var $time = $('#time');
 
@@ -150,7 +150,7 @@ describe('Chrony', function() {
 			jasmine.Clock.useMock();
 		});
 
-		it('should mount the right clock', function() {
+		it ('should mount the right clock', function() {
 			// given
 			var $time = $('#time');
 
@@ -213,7 +213,7 @@ describe('Chrony', function() {
 			expect($second).toHaveText('00');
 		});
 
-		it('should call the callback', function() {
+		it ('should call the callback', function() {
 			// given
 			var $time		= $('#time'),
 				expected	= 'Finished!';
@@ -226,7 +226,7 @@ describe('Chrony', function() {
 			expect($time).toHaveText(expected);
 		});
 
-		it('should call clock alert', function() {
+		it ('should call clock alert', function() {
 			// given
 			var $time = $('#time');
 
@@ -243,7 +243,7 @@ describe('Chrony', function() {
 			expect($time).toHaveAttr('style', 'color: rgb(255, 0, 0);');
 		});
 
-		it('should call clock alert without color', function() {
+		it ('should call clock alert without color', function() {
 			// given
 			var $time = $('#time');
 
@@ -256,7 +256,7 @@ describe('Chrony', function() {
 			expect($time).toHaveAttr('style', 'color: rgb(255, 0, 0);');
 		});
 
-		it('should call clock alert just with second', function() {
+		it ('should call clock alert just with second', function() {
 			// given
 			var $time = $('#time');
 
@@ -269,7 +269,7 @@ describe('Chrony', function() {
 			expect($time).toHaveAttr('style', 'color: rgb(255, 0, 0);');
 		});
 
-		it('should call clock alert just with minute', function() {
+		it ('should call clock alert just with minute', function() {
 			// given
 			var $time = $('#time');
 
@@ -282,7 +282,7 @@ describe('Chrony', function() {
 			expect($time).toHaveAttr('style', 'color: rgb(255, 0, 0);');
 		});
 
-		it('should call clock alert just with hour', function() {
+		it ('should call clock alert just with hour', function() {
 			// given
 			var $time = $('#time');
 
@@ -295,7 +295,7 @@ describe('Chrony', function() {
 			expect($time).toHaveAttr('style', 'color: rgb(255, 0, 0);');
 		});
 
-		it('should call clock alert with custom color', function() {
+		it ('should call clock alert with custom color', function() {
 			// given
 			var $time = $('#time');
 
@@ -308,7 +308,7 @@ describe('Chrony', function() {
 			expect($time).toHaveAttr('style', 'color: rgb(0, 255, 0);');
 		});
 		
-		it('should not display hours digits', function() {
+		it ('should not display hours digits', function() {
 			// given
 			var $time = $('#time');
 
@@ -326,7 +326,7 @@ describe('Chrony', function() {
 			expect($secondColon).not.toExist();
 		});
 		
-		it('should not display minutes digits', function() {
+		it ('should not display minutes digits', function() {
 			// given
 			var $time = $('#time');
 
@@ -344,7 +344,7 @@ describe('Chrony', function() {
 			expect($secondColon).not.toExist();
 		});
 		
-		it('should not display seconds digits', function() {
+		it ('should not display seconds digits', function() {
 			// given
 			var $time = $('#time');
 
@@ -362,7 +362,7 @@ describe('Chrony', function() {
 			expect($secondColon).not.toExist();
 		});
 		
-		it('should not display minutes and seconds digits', function() {
+		it ('should not display minutes and seconds digits', function() {
 			// given
 			var $time = $('#time');
 
