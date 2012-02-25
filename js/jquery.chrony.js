@@ -27,20 +27,18 @@
 			return this.each(function() {
 
 				var self	= this,
-					$this	= $(self),
-					opt		= $.extend({}, $.fn.chrony.defaults, options);
+					$this	= $(self);
 
-				$this.data('options', self.opt);
+				self.opt = $.extend({}, $.fn.chrony.defaults, options);
 
 				if ($this.data('chrony')) {
 					return;
 				}
 
-				self.opt = opt;
-
 				$this.data('chrony', true);
 
-				var separator = '<span style="float: left;">:</span>';
+				var opt			= self.opt,
+					separator	= '<span style="float: left;">:</span>';
 
 				if (opt.text) {
 					var text = opt.text.split(':');
@@ -130,16 +128,16 @@
 				methods.checkAlert.call(self, hour, minute, second);
 
 				timer = setInterval(function() {
-					if (opt.blink) {
-						$separators.fadeOut(opt.blinkTime, function() {
-						    $(this).fadeIn(opt.blinkTime);
+					if (self.opt.blink) {
+						$separators.fadeOut(self.opt.blinkTime, function() {
+						    $(this).fadeIn(self.opt.blinkTime);
 						});
 					}
 
 					if (second == 0) {
 						if (minute == 0) {
 							if (hour > 0) {
-								hour = methods.getNumber(hour - opt.decrement);
+								hour = methods.getNumber(hour - self.opt.decrement);
 								minute = 59;
 								second = 59;
 
@@ -148,19 +146,19 @@
 								$second.html(second);
 							}
 						} else {
-							minute = methods.getNumber(minute - opt.decrement);
+							minute = methods.getNumber(minute - self.opt.decrement);
 							second = 59;
 
 							$minute.html(minute);
 							$second.html(second);
 						}
 					} else {
-						second = methods.getNumber(second - opt.decrement);
+						second = methods.getNumber(second - self.opt.decrement);
 						$second.html(second);
 					}
 
-					if (opt.finish && second == 0 && minute == 0 && hour == 0) {
-						opt.finish.call(self);
+					if (self.opt.finish && second == 0 && minute == 0 && hour == 0) {
+						self.opt.finish.call(self);
 
 						clearInterval(timer);
 					}
@@ -191,6 +189,10 @@
 			}
 		}, getNumber: function(number) {
 			return (number < 10) ? '0' + ((number < 0) ? '0' : number) : number;
+		}, set: function(options) {
+			return this.each(function() {
+				this.opt = $.extend({}, $.fn.chrony.defaults, $(this).data('options'), options);
+			});
 		}
 	};
 

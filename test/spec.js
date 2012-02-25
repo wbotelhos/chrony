@@ -81,9 +81,9 @@ describe('Chrony', function() {
 			// when
 			$time.chrony({ seconds: (1 * 60 * 60) + (2 * 60) + 3 });
 
-			var $hour			= $time.children('#hour'),
-				$minute			= $time.children('#minute'),
-				$second			= $time.children('#second');
+			var $hour		= $time.children('#hour'),
+				$minute		= $time.children('#minute'),
+				$second		= $time.children('#second');
 
 			// then
 		    expect($hour).toHaveText('01');
@@ -98,9 +98,9 @@ describe('Chrony', function() {
 			// when
 			$time.chrony({ minutes:  (1 * 60) + 2 });
 
-			var $hour			= $time.children('#hour'),
-				$minute			= $time.children('#minute'),
-				$second			= $time.children('#second');
+			var $hour		= $time.children('#hour'),
+				$minute		= $time.children('#minute'),
+				$second		= $time.children('#second');
 
 			// then
 		    expect($hour).toHaveText('01');
@@ -115,9 +115,9 @@ describe('Chrony', function() {
 			// when
 			$time.chrony({ hours:  23 });
 
-			var $hour			= $time.children('#hour'),
-				$minute			= $time.children('#minute'),
-				$second			= $time.children('#second');
+			var $hour		= $time.children('#hour'),
+				$minute		= $time.children('#minute'),
+				$second		= $time.children('#second');
 
 			// then
 		    expect($hour).toHaveText('23');
@@ -132,9 +132,9 @@ describe('Chrony', function() {
 			// when
 			$time.chrony({ hours:  27 });
 
-			var $hour			= $time.children('#hour'),
-				$minute			= $time.children('#minute'),
-				$second			= $time.children('#second');
+			var $hour		= $time.children('#hour'),
+				$minute		= $time.children('#minute'),
+				$second		= $time.children('#second');
 
 			// then
 		    expect($hour).toHaveText('23');
@@ -380,6 +380,68 @@ describe('Chrony', function() {
 			expect($secondColon).not.toExist();
 		});
 
+	});
+
+	describe('public functions', function() {
+
+		beforeEach(function() {
+			jasmine.Clock.useMock();
+		});
+
+		it ('should override the finish callback', function() {
+			// given
+			var $time			= $('#time'),
+				firstExpected	= 'Finished!',
+				expected		= 'Overrided!';
+
+			// when
+			$time.chrony({ seconds: 1, finish: function() { $(this).html(firstExpected); } });
+
+			$('#time').chrony('set', { finish: function() { $(this).html(expected); } });
+
+			jasmine.Clock.tick(1000);
+
+			// then
+			expect($time).toHaveText(expected);
+		});
+
+		it ('should override decrement', function() {
+			// given
+			var $time = $('#time');
+
+			// when
+			$time.chrony({ seconds: 20 });
+
+			$('#time').chrony('set', { decrement: 10 });
+
+			// then
+			var $hour			= $time.children('#hour'),
+				$firstColon		= $time.children('span').eq(0),
+				$minute			= $time.children('#minute'),
+				$secondColon	= $time.children('span').eq(1),
+				$second			= $time.children('#second');
+
+			expect($hour).toHaveText('00');
+			expect($firstColon).toHaveText(':');
+			expect($minute).toHaveText('00');
+			expect($secondColon).toHaveText(':');
+			expect($second).toHaveText('20');
+
+			jasmine.Clock.tick(1000);
+			expect($hour).toHaveText('00');
+			expect($firstColon).toHaveText(':');
+			expect($minute).toHaveText('00');
+			expect($secondColon).toHaveText(':');
+			expect($second).toHaveText('10');
+
+			jasmine.Clock.tick(1000);
+			expect($hour).toHaveText('00');
+			expect($firstColon).toHaveText(':');
+			expect($minute).toHaveText('00');
+			expect($secondColon).toHaveText(':');
+			expect($second).toHaveText('00');
+		});
+	
 	});
 
 });
