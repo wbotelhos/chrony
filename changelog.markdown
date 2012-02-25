@@ -1,5 +1,13 @@
 # jQuery Chrony - A Count Down Plugin - http'//wbotelhos.com/chrony
 
+### 0.2.0
+
++ Added option 'displayHours' to choose if the hours will be displayes; (by leohackin) 
++ Added option 'displayMinutes' to choose if the minutes will be displayes; (by leohackin)
++ Added option 'displaySeconds' to choose if the seconds will be displayes; (by leohackin)
++ Added method 'set' to re-adjust runtime options;
++ Now Chrony keeps the state of the elements and no longer depends of an ID.
+
 ### 0.1.0
 
 + Option 'alert' with color, hour, minute and second to configure the alert;
