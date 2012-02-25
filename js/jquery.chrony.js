@@ -26,9 +26,21 @@
 		init: function(options) {
 			return this.each(function() {
 
-				var $this		= $(this),
-					opt			= $.extend({}, $.fn.chrony.defaults, options),
-					separator	= '<span style="float: left;">:</span>';
+				var self	= this,
+					$this	= $(self),
+					opt		= $.extend({}, $.fn.chrony.defaults, options);
+
+				$this.data('options', self.opt);
+
+				if ($this.data('chrony')) {
+					return;
+				}
+
+				self.opt = opt;
+
+				$this.data('chrony', true);
+
+				var separator = '<span style="float: left;">:</span>';
 
 				if (opt.text) {
 					var text = opt.text.split(':');
@@ -70,9 +82,9 @@
 				var hour		= methods.getNumber(opt.hour),
 					minute		= methods.getNumber(opt.minute),
 					second		= methods.getNumber(opt.second),
-					$hour		= $('<div/>', { id: 'hour', html: hour, style: 'float: left;' }),
-					$minute		= $('<div/>', { id: 'minute', html: minute, style: 'float: left;' }),
-					$second		= $('<div/>', { id: 'second', html: second, style: 'float: left;' }),
+					$hour		= $('<div />', { id: 'hour', html: hour, style: 'float: left;' }),
+					$minute		= $('<div />', { id: 'minute', html: minute, style: 'float: left;' }),
+					$second		= $('<div />', { id: 'second', html: second, style: 'float: left;' }),
 					timer		= 0;
 
 				if (opt.displayHours) {
@@ -115,7 +127,7 @@
 					}
 				}
 
-				methods.checkAlert.apply($this, [opt.alert, hour, minute, second]);
+				methods.checkAlert.call(self, hour, minute, second);
 
 				timer = setInterval(function() {
 					if (opt.blink) {
@@ -148,18 +160,21 @@
 					}
 
 					if (opt.finish && second == 0 && minute == 0 && hour == 0) {
-						opt.finish.call($this);
+						opt.finish.call(self);
 
 						clearInterval(timer);
 					}
 
-					methods.checkAlert.apply($this, [opt.alert, hour, minute, second]);
+					methods.checkAlert.call(self, hour, minute, second);
 				}, 1000);
 			});
-		}, checkAlert: function(alert, hour, minute, second) {
-			if (alert && this.css('color') != '') {
+		}, checkAlert: function(hour, minute, second) {
+			var $this	= $(this),
+				alert	= this.opt.alert;
+
+			if (alert && $this.css('color') != '') {
 				if (hour <= alert.hour && minute <= alert.minute && second <= alert.second) {
-					this.css('color', alert.color);
+					$this.css('color', alert.color);
 				}
 			}
 		}, checkTime: function(hour, minute, second) {

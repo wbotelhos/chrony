@@ -219,7 +219,7 @@ describe('Chrony', function() {
 				expected	= 'Finished!';
 
 			// when
-			$time.chrony({ seconds: 1, finish: function() { this.html(expected); } });
+			$time.chrony({ seconds: 1, finish: function() { $(this).html(expected); } });
 
 			// then
 			jasmine.Clock.tick(1000);
