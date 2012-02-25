@@ -314,13 +314,14 @@ describe('Chrony', function() {
 
 			// when
 			$time.chrony({ minutes: 20, displayHours: false});
-			$firstColon		= $time.children('span').eq(0),
-			$secondColon		= $time.children('span').eq(1),
 
 			// then
+			var $firstColon		= $time.children('span').eq(0),
+				$secondColon	= $time.children('span').eq(1);
+
 			expect($time).not.toContain('div#hour');
-		  expect($time).toContain('div#minute');
-		  expect($time).toContain('div#second');
+			expect($time).toContain('div#minute');
+			expect($time).toContain('div#second');
 			expect($firstColon).toExist();
 			expect($secondColon).not.toExist();
 		});
@@ -331,13 +332,14 @@ describe('Chrony', function() {
 
 			// when
 			$time.chrony({ seconds: 20, displayMinutes: false});
-			$firstColon		= $time.children('span').eq(0),
-			$secondColon		= $time.children('span').eq(1),
 
 			// then
+			var $firstColon		= $time.children('span').eq(0),
+				$secondColon	= $time.children('span').eq(1);
+
 			expect($time).toContain('div#hour');
-		  expect($time).not.toContain('div#minute');
-		  expect($time).toContain('div#second');
+			expect($time).not.toContain('div#minute');
+			expect($time).toContain('div#second');
 			expect($firstColon).toExist();
 			expect($secondColon).not.toExist();
 		});
@@ -348,13 +350,14 @@ describe('Chrony', function() {
 
 			// when
 			$time.chrony({ minutes: 20, displaySeconds: false});
-			$firstColon		= $time.children('span').eq(0),
-			$secondColon		= $time.children('span').eq(1),
 
 			// then
+			var $firstColon		= $time.children('span').eq(0),
+				$secondColon	= $time.children('span').eq(1);
+
 			expect($time).toContain('div#hour');
-		  expect($time).toContain('div#minute');
-		  expect($time).not.toContain('div#second');
+			expect($time).toContain('div#minute');
+			expect($time).not.toContain('div#second');
 			expect($firstColon).toExist();
 			expect($secondColon).not.toExist();
 		});
@@ -365,13 +368,14 @@ describe('Chrony', function() {
 
 			// when
 			$time.chrony({ hours: 20, displayMinutes: false, displaySeconds: false});
-			$firstColon		= $time.children('span').eq(0),
-			$secondColon		= $time.children('span').eq(1),
 
 			// then
+			var $firstColon		= $time.children('span').eq(0),
+				$secondColon	= $time.children('span').eq(1);
+
 			expect($time).toContain('div#hour');
-		  expect($time).not.toContain('div#minute');
-		  expect($time).not.toContain('div#second');
+			expect($time).not.toContain('div#minute');
+			expect($time).not.toContain('div#second');
 			expect($firstColon).not.toExist();
 			expect($secondColon).not.toExist();
 		});
