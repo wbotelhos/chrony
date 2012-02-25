@@ -48,4 +48,5 @@ You can do it by [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&b
 
 ## Contributors
 
+Daniel Faria
 Léo Hackin
