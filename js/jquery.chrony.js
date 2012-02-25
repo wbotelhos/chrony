@@ -29,7 +29,7 @@
 				var self	= this,
 					$this	= $(self);
 
-				self.opt = $.extend({}, $.fn.chrony.defaults, options);
+				self.opt = $.extend(true, {}, $.fn.chrony.defaults, options);
 
 				if ($this.data('chrony')) {
 					return;
@@ -106,24 +106,6 @@
 				}
 
 				var $separators = $this.children('span');
-
-				if (opt.alert) {
-					if (!opt.alert.color) {
-						opt.alert.color = '#F00';
-					}
-
-					if (!opt.alert.hour) {
-						opt.alert.hour = 0;
-					}
-
-					if (!opt.alert.minute) {
-						opt.alert.minute = 0;
-					}
-
-					if (!opt.alert.second) {
-						opt.alert.second = 0;
-					}
-				}
 
 				methods.checkAlert.call(self, hour, minute, second);
 
