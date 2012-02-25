@@ -83,16 +83,20 @@
 				
 				if (opt.displayHours) {
 					$this.append($hour);
+
 					if (opt.displayMinutes || opt.displaySeconds) {
 						$this.append(separator);
 					}
 				}
+
 				if (opt.displayMinutes) {
-					$this.append($minute)
+					$this.append($minute);
+
 					if (opt.displaySeconds) {
 						$this.append(separator);
 					}
 				}
+
 				if (opt.displaySeconds) {
 					$this.append($second);
 				}
@@ -192,21 +196,21 @@
 	};
 
 	$.fn.chrony.defaults = {
-		alert:		{ color: '#F00', hour: 0, minute: 0, second: 10 },
-		blink:		false,
-		blinkTime:	130,
-		finish:		undefined,
-		decrement:	1,
-		hour:		0,
-		hours:		undefined,
-		displayHours: true,
-		displayMinutes: true,
-		displaySeconds: true,
-		minute:		0,
-		minutes:	undefined,
-		second:		0,
-		seconds:	undefined,
-		text:		undefined
+		alert			: { color: '#F00', hour: 0, minute: 0, second: 10 },
+		blink			: false,
+		blinkTime		: 130,
+		finish			: undefined,
+		decrement		: 1,
+		displayHours	: true,
+		displayMinutes	: true,
+		displaySeconds	: true,
+		hour			: 0,
+		hours			: undefined,
+		minute			: 0,
+		minutes			: undefined,
+		second			: 0,
+		seconds			: undefined,
+		text			: undefined
 	};
 
 })(jQuery);
