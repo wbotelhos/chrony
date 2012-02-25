@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version        0.1.0
+ * @version        0.2.0
  * @since          2011.10.23
  * @author         Washington Botelho
  * @documentation  wbotelhos.com/chrony

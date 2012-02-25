@@ -8,9 +8,9 @@ The jQuery Chrony is licensed under [The MIT License](http://www.opensource.org/
 
 ## Version
 
-	@version        0.1.0
+	@version        0.2.0
 	@since          2011.10.23
-	@author         Washington Botelho dos Santos
+	@author         Washington Botelho
 	@documentation  wbotelhos.com/chrony
 	@twitter        twitter.com/wbotelhos
 

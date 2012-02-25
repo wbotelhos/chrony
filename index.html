@@ -59,7 +59,7 @@
 			span#version { color: #777; font: 10px verdana; }
 
 			/* custom */
-			#time, #blink, #callback, #text, #seconds, #minutes, #decrement, #alert, #hours, #no-hours, #no-minutes, #no-seconds { font: bold 14px arial; color: #2C8CBD; }
+			#time, #blink, #callback, #text, #seconds, #minutes, #decrement, #alert, #hours, #no-hours, #no-minutes, #no-seconds, #function { font: bold 14px arial; color: #2C8CBD; }
 		</style>
 
 		<script type="text/javascript">
@@ -79,16 +79,16 @@
 		<div id="header">
 			<div id="title">
 				<a href="http://wbotelhos.com/chrony">jQuery Chrony - A Count Down Plugin</a>
-				<span>(current version: 0.1.0)</span>
+				<span>(current version: 0.2.0)</span>
 			</div>
 
 			<div id="menu">
-				<a href="http://github.com/downloads/wbotelhos/chrony/jquery.chrony-0.1.0.zip" target="_blank">Download</a> |
+				<a href="http://github.com/downloads/wbotelhos/chrony/jquery.chrony-0.2.0.zip" target="_blank">Download</a> |
 				<a href="http://github.com/wbotelhos/chrony" target="_blank">Github</a> |
-				<a href="http://wbotelhos.com/chrony/changelog.markdown" target="_blank">Change Log</a> |
-				<a href="http://wbotelhos.com/chrony/README.markdown" target="_blank">Readme</a> |
+				<a href="http://www.wbotelhos.com/chrony/changelog.markdown" target="_blank">Change Log</a> |
+				<a href="http://www.wbotelhos.com/chrony/README.markdown" target="_blank">Readme</a> |
 				<a href="http://www.wbotelhos.com/2011/11/06/jquery-chrony-a-count-down-plugin" target="_blank">Article</a> |
-				<a href="http://wbotelhos.com/chrony/LICENSE.txt" target="_blank">License</a> |
+				<a href="http://www.wbotelhos.com/chrony/LICENSE.txt" target="_blank">License</a> |
 				<a href="http://www.wbotelhos.com/chrony/who.html" target="_blank">Who is using</a> |
 				<a href="http://www.wbotelhos.com/2011/11/06/jquery-chrony-a-count-down-plugin#comments" target="_blank" style="color: #2C8CBD;">Doubt</a> |
 				<a href="http://www.wbotelhos.com/labs" target="_blank" style="color: #000;">yLab</a>
@@ -283,6 +283,18 @@
 				<div class="comment">Time written out in full using the following mask: HH:mm:ss.</div>
 			</div>
 
+			<div id="function-demo" class="session">Public functions:</div>
+
+			<div id="function"></div>
+
+			<div style="clear: both; color: #CCC; float: left; margin-bottom: 15px; margin-top: 15px;">
+				decrement: <input id="decrement-value" type="text" value="1" style="border: 1px solid #CCC; width: 25px;" />
+				blink: <input id="blink-value" type="text" value="true" style="border: 1px solid #CCC; width: 25px;" />
+				blinkTime: <input id="blink-time-value" type="text" value="130" style="border: 1px solid #CCC; width: 25px;" />
+
+				<a id="set-action" href="javascript:void(0);" title="set" style="margin-left: 5px;">set</a>
+			</div>
+
 			<div id="global-demo" class="session">Changing the settings globally:</div>
 
 			<div class="source">
@@ -308,7 +320,7 @@
 				$('#callback').chrony({
 					second	: 15,
 					finish	: function() {
-						this.html('Finished!');
+						$(this).html('Finished!');
 					}
 				});
 
@@ -340,6 +352,29 @@
 				$('#no-minutes').chrony({ hour: 1, minute: 20, second: 30, displayMinutes: false });
 
 				$('#no-seconds').chrony({ hour: 1, minute: 20, second: 30, displaySeconds: false });
+
+				$('#function').chrony({ hour: 1, minute: 2, second: 3 });
+
+				$('#set-action').click(function() {
+					var opt			= {},
+						decrement	= $('#decrement-value').val(),
+						blink		= $('#blink-value').val(),
+						blinkTime	= $('#blink-time-value').val();
+
+					if (decrement != '') {
+						opt['decrement'] = decrement;
+					}
+
+					if (blink != '') {
+						opt['blink'] = blink;
+					}
+
+					if (blinkTime != '') {
+						opt['blinkTime'] = blinkTime;
+					}
+
+					$('#function').chrony('set', opt);
+				});
 
 			});
 		</script>
