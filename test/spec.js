@@ -307,6 +307,74 @@ describe('Chrony', function() {
 			jasmine.Clock.tick(1000 * 60 * 60);
 			expect($time).toHaveAttr('style', 'color: rgb(0, 255, 0);');
 		});
+		
+		it('should not display hours digits', function() {
+			// given
+			var $time = $('#time');
+
+			// when
+			$time.chrony({ minutes: 20, displayHours: false});
+			$firstColon		= $time.children('span').eq(0),
+			$secondColon		= $time.children('span').eq(1),
+
+			// then
+			expect($time).not.toContain('div#hour');
+		  expect($time).toContain('div#minute');
+		  expect($time).toContain('div#second');
+			expect($firstColon).toExist();
+			expect($secondColon).not.toExist();
+		});
+		
+		it('should not display minutes digits', function() {
+			// given
+			var $time = $('#time');
+
+			// when
+			$time.chrony({ seconds: 20, displayMinutes: false});
+			$firstColon		= $time.children('span').eq(0),
+			$secondColon		= $time.children('span').eq(1),
+
+			// then
+			expect($time).toContain('div#hour');
+		  expect($time).not.toContain('div#minute');
+		  expect($time).toContain('div#second');
+			expect($firstColon).toExist();
+			expect($secondColon).not.toExist();
+		});
+		
+		it('should not display seconds digits', function() {
+			// given
+			var $time = $('#time');
+
+			// when
+			$time.chrony({ minutes: 20, displaySeconds: false});
+			$firstColon		= $time.children('span').eq(0),
+			$secondColon		= $time.children('span').eq(1),
+
+			// then
+			expect($time).toContain('div#hour');
+		  expect($time).toContain('div#minute');
+		  expect($time).not.toContain('div#second');
+			expect($firstColon).toExist();
+			expect($secondColon).not.toExist();
+		});
+		
+		it('should not display minutes and seconds digits', function() {
+			// given
+			var $time = $('#time');
+
+			// when
+			$time.chrony({ hours: 20, displayMinutes: false, displaySeconds: false});
+			$firstColon		= $time.children('span').eq(0),
+			$secondColon		= $time.children('span').eq(1),
+
+			// then
+			expect($time).toContain('div#hour');
+		  expect($time).not.toContain('div#minute');
+		  expect($time).not.toContain('div#second');
+			expect($firstColon).not.toExist();
+			expect($secondColon).not.toExist();
+		});
 
 	});
 
