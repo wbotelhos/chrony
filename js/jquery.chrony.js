@@ -28,7 +28,6 @@
 
 				var $this		= $(this),
 					opt			= $.extend({}, $.fn.chrony.defaults, options),
-					id			= $this.data('options', opt).attr('id'),
 					separator	= '<span style="float: left;">:</span>';
 
 				if (opt.text) {
@@ -76,11 +75,6 @@
 					$second		= $('<div/>', { id: 'second', html: second, style: 'float: left;' }),
 					timer		= 0;
 
-				if (id === undefined) {
-					id = 'chrony-' + $this.index();
-					$this.attr('id', id); 
-				}
-				
 				if (opt.displayHours) {
 					$this.append($hour);
 
