@@ -27,7 +27,7 @@
 			return this.each(function() {
 
 				var $this		= $(this),
-					opt			= $.extend({}, $.fn.chrony.defaults, options),
+					opt			= $.extend(true, {}, $.fn.chrony.defaults, options),
 					id			= $this.data('options', opt).attr('id'),
 					separator	= '<span style="float: left;">:</span>';
 
@@ -98,24 +98,6 @@
 				}
 
 				var $separators = $this.children('span');
-
-				if (opt.alert) {
-					if (!opt.alert.color) {
-						opt.alert.color = '#F00';
-					}
-
-					if (!opt.alert.hour) {
-						opt.alert.hour = 0;
-					}
-
-					if (!opt.alert.minute) {
-						opt.alert.minute = 0;
-					}
-
-					if (!opt.alert.second) {
-						opt.alert.second = 0;
-					}
-				}
 
 				methods.checkAlert.apply($this, [opt.alert, hour, minute, second]);
 
