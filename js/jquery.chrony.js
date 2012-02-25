@@ -80,8 +80,22 @@
 					id = 'chrony-' + $this.index();
 					$this.attr('id', id); 
 				}
-
-				$this.append($hour).append(separator).append($minute).append(separator).append($second);
+				
+				if (opt.displayHours) {
+					$this.append($hour);
+					if (opt.displayMinutes || opt.displaySeconds) {
+						$this.append(separator);
+					}
+				}
+				if (opt.displayMinutes) {
+					$this.append($minute)
+					if (opt.displaySeconds) {
+						$this.append(separator);
+					}
+				}
+				if (opt.displaySeconds) {
+					$this.append($second);
+				}
 
 				var $separators = $this.children('span');
 
@@ -185,6 +199,9 @@
 		decrement:	1,
 		hour:		0,
 		hours:		undefined,
+		displayHours: true,
+		displayMinutes: true,
+		displaySeconds: true,
 		minute:		0,
 		minutes:	undefined,
 		second:		0,
