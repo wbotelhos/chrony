@@ -20,14 +20,14 @@
  *
  */
 
-; (function ($) {
+;(function($) {
 
 	var methods = {
-		init: function (options) {
-			return this.each(function () {
+		init: function(options) {
+			return this.each(function() {
 
-				var self = this,
-					$this = $(self);
+				var self	= this,
+					$this	= $(self);
 
 				self.opt = $.extend(true, {}, $.fn.chrony.defaults, options);
 
@@ -37,9 +37,9 @@
 
 				$this.data('chrony', true);
 
-				var opt = self.opt,
-					separator,
-					display = "float: left;";
+				var opt     = self.opt,
+					display = "float: left;",
+					separator;
 
 
 				if (opt.style) {
@@ -79,19 +79,19 @@
 				}
 
 				var message = methods.checkTime(opt.hour, opt.minute, opt.second);
+	
+				if (message) {
+					$this.html('<div style="color: #F00; font-size: 9px;">Number out of range!</div>');
+					$.error(message);
+				}
 
-				//				if (message) {
-				//					$this.html('<div style="color: #F00; font-size: 9px;">Number out of range!</div>');
-				//					$.error(message);
-				//				}
-
-				var hour = methods.getNumber(opt.hour),
-					minute = methods.getNumber(opt.minute),
-					second = methods.getNumber(opt.second),
-					$hour = $('<div />', { id: 'hour', html: hour, style: display }),
-					$minute = $('<div />', { id: 'minute', html: minute, style: display }),
-					$second = $('<div />', { id: 'second', html: second, style: display }),
-					timer = 0;
+				var hour		= methods.getNumber(opt.hour),
+					minute		= methods.getNumber(opt.minute),
+					second		= methods.getNumber(opt.second),
+					$hour		= $('<div />', { id: 'hour', html: hour, style: display  }),
+					$minute		= $('<div />', { id: 'minute', html: minute, style: display  }),
+					$second		= $('<div />', { id: 'second', html: second, style: display  }),
+					timer		= 0;
 
 				if (opt.displayHours) {
 					$this.append($hour);
@@ -117,10 +117,10 @@
 
 				methods.checkAlert.call(self, hour, minute, second);
 
-				timer = setInterval(function () {
+				timer = setInterval(function() {
 					if (self.opt.blink) {
-						$separators.fadeOut(self.opt.blinkTime, function () {
-							$(this).fadeIn(self.opt.blinkTime);
+						$separators.fadeOut(self.opt.blinkTime, function() {
+						    $(this).fadeIn(self.opt.blinkTime);
 						});
 					}
 
@@ -156,16 +156,16 @@
 					methods.checkAlert.call(self, hour, minute, second);
 				}, 1000);
 			});
-		}, checkAlert: function (hour, minute, second) {
-			var $this = $(this),
-				alert = this.opt.alert;
+		}, checkAlert: function(hour, minute, second) {
+			var $this	= $(this),
+				alert	= this.opt.alert;
 
 			if (alert && $this.css('color') != '') {
 				if (hour <= alert.hour && minute <= alert.minute && second <= alert.second) {
 					$this.css('color', alert.color);
 				}
 			}
-		}, checkTime: function (hour, minute, second) {
+		}, checkTime: function(hour, minute, second) {
 			if (hour < 0 || hour > 24) {
 				return 'The hour must be >= 0 or <= 24';
 			}
@@ -177,42 +177,42 @@
 			if (second < 0 || second > 59) {
 				return 'The second must be >= 0 or <= 59';
 			}
-		}, getNumber: function (number) {
+		}, getNumber: function(number) {
 			return (number < 10) ? '0' + ((number < 0) ? '0' : number) : number;
-		}, set: function (options) {
-			return this.each(function () {
+		}, set: function(options) {
+			return this.each(function() {
 				this.opt = $.extend({}, $.fn.chrony.defaults, $(this).data('options'), options);
 			});
 		}
 	};
 
-	$.fn.chrony = function (method) {
+	$.fn.chrony = function(method) {
 		if (methods[method]) {
 			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
 		} else if (typeof method === 'object' || !method) {
 			return methods.init.apply(this, arguments);
 		} else {
 			$.error('Method ' + method + ' does not exist!');
-		}
+		} 
 	};
 
 	$.fn.chrony.defaults = {
-		alert: { color: '#F00', hour: 0, minute: 0, second: 10 },
-		blink: false,
-		blinkTime: 130,
-		finish: undefined,
-		decrement: 1,
-		displayHours: true,
-		displayMinutes: true,
-		displaySeconds: true,
-		hour: 0,
-		hours: undefined,
-		minute: 0,
-		minutes: undefined,
-		second: 0,
-		seconds: undefined,
-		style: undefined,
-		text: undefined,
+		alert			: { color: '#F00', hour: 0, minute: 0, second: 10 },
+		blink			: false,
+		blinkTime		: 130,
+		finish			: undefined,
+		decrement		: 1,
+		displayHours	: true,
+		displayMinutes	: true,
+		displaySeconds	: true,
+		hour			: 0,
+		hours			: undefined,
+		minute			: 0,
+		minutes			: undefined,
+		second			: 0,
+		seconds			: undefined,
+		style           : undefined,
+		text			: undefined
 	};
 
 })(jQuery);
