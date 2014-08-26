@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  *
- * @version        0.2.0
+ * @version        0.2.1
  * @since          2011.10.23
  * @author         Washington Botelho
  * @documentation  wbotelhos.com/chrony
@@ -37,8 +37,16 @@
 
 				$this.data('chrony', true);
 
-				var opt			= self.opt,
-					separator	= '<span style="float: left;">:</span>';
+				var opt     = self.opt,
+					display = "float: left;",
+					separator;
+
+
+				if (opt.style) {
+					display = opt.style;
+				}
+
+				separator = '<span style="' + display + '">:</span>';
 
 				if (opt.text) {
 					var text = opt.text.split(':');
@@ -80,9 +88,9 @@
 				var hour		= methods.getNumber(opt.hour),
 					minute		= methods.getNumber(opt.minute),
 					second		= methods.getNumber(opt.second),
-					$hour		= $('<div />', { id: 'hour', html: hour, style: 'float: left;' }),
-					$minute		= $('<div />', { id: 'minute', html: minute, style: 'float: left;' }),
-					$second		= $('<div />', { id: 'second', html: second, style: 'float: left;' }),
+					$hour		= $('<div />', { id: 'hour', html: hour, style: display  }),
+					$minute		= $('<div />', { id: 'minute', html: minute, style: display  }),
+					$second		= $('<div />', { id: 'second', html: second, style: display  }),
 					timer		= 0;
 
 				if (opt.displayHours) {
@@ -203,6 +211,7 @@
 		minutes			: undefined,
 		second			: 0,
 		seconds			: undefined,
+		style           : undefined,
 		text			: undefined
 	};
 

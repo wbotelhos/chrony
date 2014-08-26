@@ -34,6 +34,7 @@ The jQuery Chrony is licensed under [The MIT License](http://www.opensource.org/
 	minutes        : undefined      // Number of minutes initial auto adjusted to hour if needed.
 	second         : 0              // Number of seconds initial.
 	seconds        : undefined      // Number of seconds initial auto adjusted to minute if needed.
+	style          : undefined      // Custom style attributed for the chronometer tag.
 	text           : undefined      // Time written out in full using the following mask: HH:mm:ss.
 
 ## Usage with default values
